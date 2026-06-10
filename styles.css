@@ -107,6 +107,20 @@ body::before {
   letter-spacing: 0;
 }
 
+.name-highlight {
+  display: inline-block;
+  color: var(--gold);
+  font-size: 1.22em;
+  font-weight: 900;
+  text-shadow: 0 2px 14px rgba(246, 196, 83, 0.42);
+}
+
+.message .name-highlight,
+.loading .name-highlight,
+.wish-card .name-highlight {
+  font-size: 1.18em;
+}
+
 h1,
 h2 {
   margin: 0;
