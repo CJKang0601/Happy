@@ -300,6 +300,7 @@ h2,
   display: grid;
   place-items: center;
   padding: clamp(14px, 3vw, 22px);
+  isolation: isolate;
 }
 
 .prize-stage::before {
@@ -313,6 +314,24 @@ h2,
     conic-gradient(from 20deg, rgba(59, 130, 246, 0.2), rgba(37, 179, 168, 0.26), rgba(241, 111, 91, 0.2), rgba(59, 130, 246, 0.2));
   filter: blur(2px);
   animation: haloPulse 1.8s ease-in-out infinite;
+}
+
+.prize-stage::after {
+  content: "";
+  position: absolute;
+  top: -118px;
+  left: 50%;
+  width: min(560px, 94vw);
+  height: 420px;
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(104deg, transparent 0 24%, rgba(255, 228, 139, 0.32) 38%, rgba(255, 228, 139, 0.08) 53%, transparent 68%),
+    linear-gradient(256deg, transparent 0 24%, rgba(255, 228, 139, 0.28) 38%, rgba(255, 228, 139, 0.08) 53%, transparent 68%);
+  clip-path: polygon(28% 0, 72% 0, 91% 100%, 9% 100%);
+  mix-blend-mode: screen;
+  animation: spotlightGlow 2.4s ease-in-out infinite;
 }
 
 .winner-badge {
@@ -392,6 +411,8 @@ h2,
   width: 104px;
   height: 154px;
   transform-origin: bottom center;
+  --face: 1;
+  --lean: 8deg;
   animation: cheerBounce 1.18s ease-in-out infinite;
 }
 
@@ -403,6 +424,8 @@ h2,
   right: clamp(12px, 5vw, 44px);
   width: 84px;
   height: 126px;
+  --face: -1;
+  --lean: 8deg;
   animation-delay: 120ms;
 }
 
@@ -415,59 +438,86 @@ h2,
 }
 
 .head {
-  left: 50%;
+  left: 56%;
   top: 22px;
   width: 46px;
   height: 46px;
   transform: translateX(-50%);
-  border-radius: 999px;
+  border-radius: 999px 999px 999px 78%;
   background: #ffd3aa;
   box-shadow: inset -5px -4px 0 rgba(191, 118, 72, 0.18);
   z-index: 3;
 }
 
+.head::before,
+.head::after {
+  content: "";
+  position: absolute;
+  display: block;
+}
+
+.head::before {
+  right: 7px;
+  top: 17px;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: #34201a;
+}
+
+.head::after {
+  right: -5px;
+  top: 22px;
+  width: 10px;
+  height: 8px;
+  border-radius: 0 999px 999px 0;
+  background: #ffd3aa;
+  box-shadow: 1px 2px 0 rgba(191, 118, 72, 0.12);
+}
+
 .hair {
-  left: 50%;
+  left: 52%;
   top: 12px;
   width: 58px;
   height: 44px;
   transform: translateX(-50%);
-  border-radius: 28px 28px 18px 18px;
+  border-radius: 28px 30px 16px 22px;
   background: #2b1d19;
   z-index: 2;
 }
 
 .body {
-  left: 50%;
+  left: 49%;
   bottom: 0;
   width: 68px;
   height: 88px;
   transform: translateX(-50%);
-  border-radius: 28px 28px 8px 8px;
+  border-radius: 30px 22px 8px 8px;
   background: linear-gradient(180deg, #ff6a7a, #d62539);
   box-shadow: inset 0 10px 0 rgba(255, 255, 255, 0.12);
   z-index: 1;
 }
 
 .arm {
-  top: 72px;
-  width: 38px;
-  height: 14px;
+  top: 76px;
+  width: 42px;
+  height: 13px;
   border-radius: 999px;
   background: #ffd3aa;
   z-index: 4;
-  transform-origin: center right;
-  animation: clapLeft 520ms ease-in-out infinite;
+  box-shadow: 0 2px 0 rgba(191, 118, 72, 0.14);
 }
 
 .arm-left {
-  left: 16px;
+  left: 34px;
+  transform-origin: 8% 50%;
+  animation: clapNear 560ms ease-in-out infinite;
 }
 
 .arm-right {
-  right: 16px;
-  transform-origin: center left;
-  animation-name: clapRight;
+  left: 44px;
+  transform-origin: 8% 50%;
+  animation: clapFar 560ms ease-in-out infinite;
 }
 
 .person-child .head {
@@ -491,16 +541,16 @@ h2,
 
 .person-child .arm {
   top: 58px;
-  width: 32px;
+  width: 34px;
   height: 12px;
 }
 
 .person-child .arm-left {
-  left: 12px;
+  left: 28px;
 }
 
 .person-child .arm-right {
-  right: 12px;
+  left: 36px;
 }
 
 .confetti {
@@ -582,30 +632,41 @@ h2,
   }
 }
 
+@keyframes spotlightGlow {
+  0%, 100% {
+    opacity: 0.62;
+    transform: translateX(-50%) scaleX(0.96);
+  }
+  50% {
+    opacity: 0.95;
+    transform: translateX(-50%) scaleX(1.04);
+  }
+}
+
 @keyframes cheerBounce {
   0%, 100% {
-    transform: translateY(0) rotate(-1deg);
+    transform: translateY(0) scaleX(var(--face)) rotate(var(--lean)) skewY(-1deg);
   }
   50% {
-    transform: translateY(-5px) rotate(1deg);
+    transform: translateY(-5px) scaleX(var(--face)) rotate(var(--lean)) skewY(1deg);
   }
 }
 
-@keyframes clapLeft {
+@keyframes clapNear {
   0%, 100% {
-    transform: rotate(25deg) translateX(-2px);
+    transform: rotate(25deg) translate(0, 0);
   }
   50% {
-    transform: rotate(-12deg) translateX(18px);
+    transform: rotate(4deg) translate(12px, -2px);
   }
 }
 
-@keyframes clapRight {
+@keyframes clapFar {
   0%, 100% {
-    transform: rotate(-25deg) translateX(2px);
+    transform: rotate(-18deg) translate(1px, 7px);
   }
   50% {
-    transform: rotate(12deg) translateX(-18px);
+    transform: rotate(6deg) translate(-5px, 1px);
   }
 }
 
