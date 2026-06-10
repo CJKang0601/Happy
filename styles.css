@@ -4,6 +4,8 @@
   --paper: #fffdf8;
   --gold: #f6c453;
   --gold-deep: #c58b24;
+  --happy-red: #e73323;
+  --happy-red-deep: #b71918;
   --coral: #f16f5b;
   --teal: #25b3a8;
   --blue: #3b82f6;
@@ -119,11 +121,20 @@ h2 {
   font-size: clamp(2.15rem, 6vw, 4.4rem);
 }
 
+h1,
+h2,
+.message,
+.note,
+.loading,
+.wish-card {
+  color: var(--happy-red);
+  text-shadow: 0 2px 12px rgba(246, 196, 83, 0.22);
+}
+
 .message,
 .note {
   max-width: 590px;
   margin: 22px auto 0;
-  color: rgba(255, 253, 248, 0.78);
   font-size: clamp(1.05rem, 3vw, 1.3rem);
   line-height: 1.75;
 }
@@ -178,7 +189,6 @@ h2 {
   display: grid;
   justify-items: center;
   gap: 24px;
-  color: rgba(255, 253, 248, 0.78);
   font-size: clamp(1.05rem, 3vw, 1.35rem);
   font-weight: 800;
 }
@@ -260,10 +270,9 @@ h2 {
   width: min(590px, 100%);
   margin: 16px auto 0;
   padding: 18px 20px;
-  border: 1px solid rgba(246, 196, 83, 0.38);
+  border: 1px solid rgba(246, 196, 83, 0.52);
   border-radius: 8px;
-  color: var(--paper);
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 248, 230, 0.1);
   box-shadow: 0 18px 36px rgba(0, 0, 0, 0.18);
   animation: reveal 620ms cubic-bezier(.2, .8, .2, 1) 420ms both;
 }
@@ -276,7 +285,7 @@ h2 {
 }
 
 .wish-card p + p {
-  color: rgba(255, 253, 248, 0.78);
+  color: var(--happy-red);
   font-size: clamp(1rem, 2.6vw, 1.18rem);
 }
 
