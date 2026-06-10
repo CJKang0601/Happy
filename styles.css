@@ -512,6 +512,7 @@ h2,
 
 .arm-left {
   left: 14px;
+  z-index: 0;
   transform-origin: 100% 50%;
   transform: rotate(-126deg);
   animation: waveLeft 820ms ease-in-out infinite;
@@ -519,6 +520,7 @@ h2,
 
 .arm-right {
   left: 55px;
+  z-index: 4;
   transform-origin: 0 50%;
   transform: rotate(-54deg);
   animation: waveRight 820ms ease-in-out infinite;
