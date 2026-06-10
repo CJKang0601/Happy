@@ -501,7 +501,7 @@ h2,
 }
 
 .arm {
-  top: 54px;
+  top: 66px;
   width: 46px;
   height: 13px;
   border-radius: 999px;
@@ -546,7 +546,7 @@ h2,
 }
 
 .person-child .arm {
-  top: 44px;
+  top: 54px;
   width: 36px;
   height: 12px;
 }
