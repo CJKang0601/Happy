@@ -412,8 +412,8 @@ h2,
   height: 154px;
   transform-origin: bottom center;
   --face: 1;
-  --lean: 8deg;
-  animation: cheerBounce 1.18s ease-in-out infinite;
+  --lean: 6deg;
+  animation: happyJump 820ms cubic-bezier(.22, .82, .3, 1) infinite;
 }
 
 .person-mom {
@@ -457,22 +457,24 @@ h2,
 }
 
 .head::before {
-  right: 7px;
-  top: 17px;
-  width: 5px;
-  height: 5px;
+  right: 8px;
+  top: 16px;
+  width: 17px;
+  height: 8px;
   border-radius: 999px;
-  background: #34201a;
+  background:
+    radial-gradient(circle at 3px 50%, #34201a 0 2px, transparent 2.5px),
+    radial-gradient(circle at 14px 50%, #34201a 0 2px, transparent 2.5px);
 }
 
 .head::after {
-  right: -5px;
-  top: 22px;
-  width: 10px;
-  height: 8px;
-  border-radius: 0 999px 999px 0;
-  background: #ffd3aa;
-  box-shadow: 1px 2px 0 rgba(191, 118, 72, 0.12);
+  right: 9px;
+  top: 27px;
+  width: 16px;
+  height: 9px;
+  border-radius: 0 0 999px 999px;
+  border-bottom: 3px solid #9d2b24;
+  background: transparent;
 }
 
 .hair {
@@ -499,8 +501,8 @@ h2,
 }
 
 .arm {
-  top: 76px;
-  width: 42px;
+  top: 54px;
+  width: 46px;
   height: 13px;
   border-radius: 999px;
   background: #ffd3aa;
@@ -509,15 +511,17 @@ h2,
 }
 
 .arm-left {
-  left: 34px;
-  transform-origin: 8% 50%;
-  animation: clapNear 560ms ease-in-out infinite;
+  left: 14px;
+  transform-origin: 100% 50%;
+  transform: rotate(-126deg);
+  animation: waveLeft 820ms ease-in-out infinite;
 }
 
 .arm-right {
-  left: 44px;
-  transform-origin: 8% 50%;
-  animation: clapFar 560ms ease-in-out infinite;
+  left: 55px;
+  transform-origin: 0 50%;
+  transform: rotate(-54deg);
+  animation: waveRight 820ms ease-in-out infinite;
 }
 
 .person-child .head {
@@ -540,17 +544,17 @@ h2,
 }
 
 .person-child .arm {
-  top: 58px;
-  width: 34px;
+  top: 44px;
+  width: 36px;
   height: 12px;
 }
 
 .person-child .arm-left {
-  left: 28px;
+  left: 10px;
 }
 
 .person-child .arm-right {
-  left: 36px;
+  left: 46px;
 }
 
 .confetti {
@@ -643,30 +647,33 @@ h2,
   }
 }
 
-@keyframes cheerBounce {
+@keyframes happyJump {
   0%, 100% {
-    transform: translateY(0) scaleX(var(--face)) rotate(var(--lean)) skewY(-1deg);
+    transform: translateY(0) scaleX(var(--face)) rotate(var(--lean));
   }
-  50% {
-    transform: translateY(-5px) scaleX(var(--face)) rotate(var(--lean)) skewY(1deg);
+  42% {
+    transform: translateY(-22px) scaleX(var(--face)) rotate(calc(var(--lean) + 2deg));
+  }
+  58% {
+    transform: translateY(-18px) scaleX(var(--face)) rotate(calc(var(--lean) - 1deg));
   }
 }
 
-@keyframes clapNear {
+@keyframes waveLeft {
   0%, 100% {
-    transform: rotate(25deg) translate(0, 0);
+    transform: rotate(-126deg) translateY(0);
   }
   50% {
-    transform: rotate(4deg) translate(12px, -2px);
+    transform: rotate(-144deg) translateY(-4px);
   }
 }
 
-@keyframes clapFar {
+@keyframes waveRight {
   0%, 100% {
-    transform: rotate(-18deg) translate(1px, 7px);
+    transform: rotate(-54deg) translateY(0);
   }
   50% {
-    transform: rotate(6deg) translate(-5px, 1px);
+    transform: rotate(-36deg) translateY(-4px);
   }
 }
 
@@ -743,16 +750,16 @@ h2,
   }
 
   .arm {
-    top: 48px;
-    width: 24px;
+    top: 34px;
+    width: 28px;
     height: 9px;
   }
 
   .arm-left {
-    left: 10px;
+    left: 8px;
   }
 
   .arm-right {
-    right: 10px;
+    left: 36px;
   }
 }
